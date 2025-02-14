@@ -1,7 +1,7 @@
 # Customer_Insurance_Predictions_S11
 
 ## Project Description
-The Sure Tomorrow insurance company aims to leverage machine learning to enhance its operations. This project focuses on evaluating the feasibility of solving multiple tasks using predictive models.
+The Sure Tomorrow insurance company aims to leverage machine learning to enhance its operations. This project focuses on evaluating the feasibility of solving multiple tasks using predictive models. This project is the beginning of diving into data science with Linear Algerbra and Python.
 
 ### Tasks:
 1. **Customer Similarity Identification**  
