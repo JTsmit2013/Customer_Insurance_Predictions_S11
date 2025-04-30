@@ -1,64 +1,87 @@
-# Customer_Insurance_Predictions_S11
+# 📊 Insurance Benefit Prediction Project
 
-## Project Description
-The Sure Tomorrow insurance company aims to leverage machine learning to enhance its operations. This project focuses on evaluating the feasibility of solving multiple tasks using predictive models. This project is the beginning of diving into data science with Linear Algerbra and Python.
+## Overview
 
-### Tasks:
-1. **Customer Similarity Identification**  
-   - Identify customers who are similar to a given customer to assist marketing efforts.
-   
-2. **Insurance Benefit Prediction**  
-   - Develop a classification model to predict whether a new customer is likely to receive an insurance benefit.
-   - Compare the trained model's performance against a dummy model to assess effectiveness.
-   
-3. **Benefit Count Prediction**  
-   - Use a linear regression model to predict the number of insurance benefits a customer is likely to receive.
-   
-4. **Data Protection**  
-   - Implement a data obfuscation algorithm to protect personal information while maintaining model accuracy.
-   - Ensure that the transformation makes data recovery difficult if accessed by unauthorized parties.
+This project explores customer data to predict whether individuals are likely to receive insurance benefits and to what extent. The work includes similarity analysis, classification, regression modeling, and data obfuscation—all performed with a strong focus on interpretability, performance, and data privacy.
 
-## Data Description
-- The dataset is stored in `/datasets/insurance_us.csv`.
-- **Features:**
-  - Insured person's gender
-  - Age
-  - Salary
-  - Number of family members
-- **Target Variable:**
-  - Number of insurance benefits received by an insured person over the past five years.
+---
 
-## Data Preparation
-### Data Exploration
-- The dataset was loaded and inspected for structure and content.
-- Missing values and anomalies were identified and addressed.
+## 🧠 Objectives
 
-### Data Quality Verification
-- Checked for missing data, extreme values, and inconsistencies.
+1. **Customer Similarity Analysis**  
+   Group similar customers to support marketing and operational decisions.
 
-## Model Development
-### Task 1: Customer Similarity
-- Feature selection and preprocessing were performed.
-- A similarity metric was chosen and applied to identify comparable customers.
+2. **Binary Classification (k-Nearest Neighbors vs. Dummy Classifier)**  
+   Predict whether a customer will receive any insurance benefit (`insurance_benefits > 0`) using kNN with hyperparameter tuning. Compare it to a chance-based dummy model.
 
-### Task 2: Binary Classification Model
-- A classification model was trained to predict insurance benefit eligibility.
-- Performance was compared against a dummy model to determine effectiveness.
+3. **Regression (Linear Regression)**  
+   Predict the amount of insurance benefits using a custom Linear Regression model. Evaluate the impact of feature scaling on performance.
 
-### Task 3: Regression Model for Benefit Prediction
-- A linear regression model was implemented to estimate the number of benefits received.
-- Model accuracy was evaluated using standard regression metrics.
+4. **Data Obfuscation with Invertible Matrix**  
+   Apply matrix transformations to mask sensitive features and demonstrate that the linear model maintains predictive performance with obfuscated data.
 
-### Task 4: Data Obfuscation
-- A transformation algorithm was developed to mask personal data.
-- The impact on model accuracy was assessed to ensure usability.
+---
 
-## Evaluation and Findings
-- Each model was validated using appropriate performance metrics.
-- Comparisons between models were conducted to determine effectiveness.
-- The success of the data obfuscation technique was analyzed.
+## 🔑 Key Results
 
-## Conclusion
-- Machine learning was successfully applied to improve predictions for Sure Tomorrow insurance.
-- The feasibility of customer similarity detection and benefit prediction was demonstrated.
-- Data security measures were implemented without compromising model performance.
+### Task 1: Customer Similarity  
+- Built a method to find nearest neighbors based on feature similarity.  
+- Helped agents identify customer segments for targeted communication.
+
+---
+
+### Task 2: Binary Classification (Insurance Benefit Eligibility)  
+**Model:** k-Nearest Neighbors (kNN)  
+**Metric:** F1 Score  
+
+- Scaling had a major impact: F1 scores jumped from 0.02–0.60 (unscaled) to 0.89–0.94 (scaled).
+- Best F1: **0.94** with **k=3** on scaled data.
+- Dummy classifier maxed out at F1 ≈ 0.20, showing kNN's clear advantage.
+
+---
+
+### Task 3: Regression (Benefit Amount)  
+**Model:** Custom Linear Regression  
+**Metric:** RMSE, R²  
+
+- **Scaled RMSE:** 0.34  
+- **R² Score:** 0.43 (43% of variance explained)  
+- Certain features (e.g., the first one) had strong negative influence, others minimal.
+
+---
+
+### Task 4: Data Obfuscation  
+- Used matrix multiplication with a random **invertible matrix** to obfuscate feature data.
+- After transforming and inverse transforming, the difference from original data was negligible (e.g., 1e-12 scale).
+- Model performance **unchanged**:  
+  - **Original RMSE:** 0.5461  
+  - **Obfuscated RMSE:** 0.5461  
+  - **R² scores were identical up to floating-point precision**
+
+---
+
+## ✅ Conclusions
+
+- **kNN is highly effective** when features are scaled, outperforming dummy/random models by a large margin.
+- **Linear Regression**, while simple, offers interpretable and fairly accurate predictions of insurance benefits.
+- **Feature scaling and data obfuscation** play critical roles in improving model robustness and preserving privacy without sacrificing performance.
+- **Custom implementations** reinforced understanding of machine learning mechanics and matrix algebra in practical settings.
+
+---
+
+## ⚙️ Tech Stack
+
+- Python, NumPy, Pandas
+- scikit-learn
+- Jupyter Notebooks
+- Custom ML implementations (kNN, Linear Regression)
+- Data visualization and metrics evaluation tools
+
+---
+
+## 🚀 Future Work
+
+- Add cross-validation and feature selection to improve generalizability.
+- Explore ensemble classifiers for insurance benefit prediction.
+- Implement secure multi-party computation or federated learning for data privacy at scale.
+
